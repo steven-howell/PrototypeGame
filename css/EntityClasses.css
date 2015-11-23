@@ -1,0 +1,27 @@
+#character {
+    height:50px;
+    width:50px;
+    position: absolute;
+    z-index: 0;
+}
+
+.AcquireItem {
+    position: absolute;
+    z-index: 1;
+}
+
+.FightCharacter {
+    position: absolute;
+    z-index: 2;
+}
+
+.Enter {
+    position: absolute;
+    z-index: 3;
+}
+
+.dungeon_warning {
+    position: absolute;
+    top:40px;
+    left:10px;
+}
