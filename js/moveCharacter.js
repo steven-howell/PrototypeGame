@@ -51,20 +51,21 @@ $(document).keypress(function(e) {
         
         var elem = document.elementFromPoint(pos_left, pos_top);
 
-        if (elem.id != "character" && elem.id != "") {
-        
-            callAction($(elem).attr('class'), elem.id);            
+        if (elem.id != "character" && elem.id != "") {            
+            callAction(elem);            
         }
     }
 });
 
 
 
-function callAction(elementClass, elementId) {
+function callAction(elem) {
     
-    var element = elementId.split("_");
+    var elementClass = $(elem).attr('class');
+    var elementId = elem.id
+    var elementWorld = $(elem).attr('data-world');
     
-    var scriptCall = "actions/" + elementClass + ".php?id=" + elementId;
+    var scriptCall = "https://dev.skycore.com:8012/platform/test/ProtoTypeGame/actions/" + elementClass + ".php?id=" + elementId + "&world_id=" + elementWorld;
     
     $.get(scriptCall, function(data) {
         

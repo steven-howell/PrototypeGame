@@ -8,7 +8,14 @@ require_once('../Items.php');
 require_once('../World.php');
 
 $Character = unserialize($_SESSION['character']);
-$World = unserialize($_SESSION['world_state']);
+
+if (!isset($_GET['world_id'])) {
+    $world_id = "world_state";
+} else {
+    $world_id = $_GET['world_id'];
+}
+
+$World = unserialize($_SESSION[$world_id]);
 
 
 $data = explode("_", $_GET['id']);
@@ -21,7 +28,7 @@ $Character->Inventory->AddItem(new $class());
 $World->removeItem($_GET['id']);
 
 $_SESSION['character'] = serialize($Character);
-$_SESSION['world_state'] = serialize($World);
+$_SESSION[$world_id] = serialize($World);
 
 echo json_encode(array('action' => 'obtain_item'));
 

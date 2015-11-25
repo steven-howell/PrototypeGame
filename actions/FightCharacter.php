@@ -12,6 +12,13 @@ require_once('../World.php');
 
 
 $data = explode("_", $_GET['id']);  
+
+if (!isset($_GET['world_id'])) {
+    $world_id = "world_state";
+} else {
+    $world_id = $_GET['world_id'];
+}
+
 $class = $data[0];
 
 // Generate the enemy class and store into sessions
@@ -20,6 +27,6 @@ if (!isset($_SESSION[$_GET['id']])) {
     $_SESSION[$_GET['id']] = serialize($Enemy);
 }    
 
-echo json_encode(array('action' => 'goto_url', 'url' => 'views/ShowBattle.php?id=' . $_GET['id']));
+echo json_encode(array('action' => 'goto_url', 'url' => 'https://dev.skycore.com:8012/platform/test/ProtoTypeGame/views/ShowBattle.php?id=' . $_GET['id'] . '&world_id=' . $world_id));
 
 ?>

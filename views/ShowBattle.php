@@ -12,7 +12,16 @@ require_once('../World.php');
 
 $Character = unserialize($_SESSION['character']);
 $Enemy = unserialize($_SESSION[$_GET['id']]);
-$World = unserialize($_SESSION['world_state']);
+
+// Default to the main world if no world id is passed
+if (!isset($_GET['world_id'])) {
+    $world_id = "world_state";
+// This might be a sub-world (dungeon, cave, etc) so fetch it from the session vars
+} else {
+    $world_id = $_GET['world_id']; 
+}
+
+$World = unserialize($_SESSION[$world_id]);
 
 $Fight = new FightBehavior($Character, $Enemy);
 $results = $Fight->CommenceFight();
@@ -56,7 +65,7 @@ if ($results['outcome'] == 'success') {
 
 $_SESSION['character'] = serialize($Character);
 unset($_SESSION[$_GET['id']]);
-$_SESSION['world_state'] = serialize($World);
+$_SESSION[$world_id] = serialize($World);
 
 ?>
 

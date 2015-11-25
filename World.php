@@ -6,11 +6,13 @@ class World {
     public $enemies = 0;
     public $level = 1;
     public $type = "Main";
+    public $global_id;
     
     
-    public function __construct($type="Main") {
+    public function __construct($type="Main", $id="world_state") {
         
         $this->type = $type;
+        $this->global_id = $id;
         $this->generateNewWorld();
     }
     

@@ -12,11 +12,11 @@ require_once('../World.php');
 require_once('../Explore.php');
 
 
-$data = explode("_", $_GET['id']);  
-$class = $data[0];
+$data = explode("_", $_GET['id']); 
 
-$callScript = "Explore" . ucfirst(strtolower($class));
+// Dungeon, Cave, etc.
+$worldType = ucfirst(strtolower($data[0]));
 
-echo json_encode(array('action' => 'goto_url', 'url' => 'views/'.$callScript.'.php?id=' . $_GET['id']));
+echo json_encode(array('action' => 'goto_url', 'url' => 'views/ExploreWorld.php?id=' . $_GET['id'] . "&worldType=" . $worldType));
 
 ?>
