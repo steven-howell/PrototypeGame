@@ -14,9 +14,14 @@ require_once('../Explore.php');
 
 $data = explode("_", $_GET['id']); 
 
-// Dungeon, Cave, etc.
+// Dungeon, Cave, Store, etc.
 $worldType = ucfirst(strtolower($data[0]));
+if ($worldType == "Store") {
+    $scriptName = "ExploreStore";
+} else {
+    $scriptName = "ExploreWorld";
+}
 
-echo json_encode(array('action' => 'goto_url', 'url' => 'views/ExploreWorld.php?id=' . $_GET['id'] . "&worldType=" . $worldType));
+echo json_encode(array('action' => 'goto_url', 'url' => 'views/'.$scriptName.'.php?id=' . $_GET['id'] . "&worldType=" . $worldType));
 
 ?>
