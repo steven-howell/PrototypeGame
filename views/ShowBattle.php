@@ -26,6 +26,13 @@ $World = unserialize($_SESSION[$world_id]);
 $Fight = new FightBehavior($Character, $Enemy);
 $results = $Fight->CommenceFight();
 
+if ($World->type == "Main") {
+    $returnURL = "../Execute.php";
+} else {
+    $worldType = ucfirst(strtolower($World->type));
+    $returnURL = "ExploreWorld.php?id=" . $world_id . "&worldType=" . $worldType;
+}
+
 ?>
 <table>
 <tr>
@@ -53,8 +60,10 @@ if (!empty($fight_details)) {
 if ($results['outcome'] == 'success') {
     $World->removeItem($_GET['id']);
     
+    
+    
     ?>
-    <a href="../Execute.php">Back to World Map</a>
+    <a href="<?=$returnURL;?>">Back to World Map</a>
     <?
 
 // Loss. Remove the entire world and display game over.
