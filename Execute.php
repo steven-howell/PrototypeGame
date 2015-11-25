@@ -43,7 +43,7 @@ if (isset($_SESSION['world_state'])) {
     
     <?php
     foreach ($World->Items as $id => $itemAttributes) {
-        ?><img class="<?=$itemAttributes['class'];?>" id="<?=$id;?>" data-world="<?=$World->global_id;?>" src="images/<?=$itemAttributes['entity'];?>.png" style="top:<?=$itemAttributes['top'];?>; left:<?=$itemAttributes['left'];?>" title="<?=$itemAttributes['desc'];?>" /><?
+        ?><img class="<?=$itemAttributes['class'];?>" id="<?=$id;?>" data-world="<?=$World->global_id;?>" src="images/<?=$itemAttributes['entity'];?>.png" style="top:<?=$itemAttributes['coordinates'][1];?>; left:<?=$itemAttributes['coordinates'][0];?>" title="<?=$itemAttributes['desc'];?>" /><?
     }
     ?>
 

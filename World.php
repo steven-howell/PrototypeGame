@@ -7,7 +7,6 @@ class World {
     public $level = 1;
     public $type = "Main";
     public $global_id;
-    public $off_limits = array(0 => array(0,0,530,30));
     
     
     public function __construct($type="Main", $id="world_state") {
@@ -40,7 +39,6 @@ class World {
         }
         
         if (!$offlimit) {
-            $this->off_limits[] = array($init_l1, $init_t1, $init_l2, $init_t2);
             return array($init_l1, $init_t1, $init_l2, $init_t2);
         }
         
@@ -50,15 +48,15 @@ class World {
     
     public function checkOffLimit($x3, $y3, $x4, $y4)
     {   
-        if (!empty($this->off_limits)) {
-            foreach ($this->off_limits as $entityCoordinates) {
+        if (!empty($this->Items)) {
+            foreach ($this->Items as $value) {
             
                 $x_off_limit = $y_off_limit = false;
                 
-                $x1 = $entityCoordinates[0];
-                $y1 = $entityCoordinates[1];
-                $x2 = $entityCoordinates[2];
-                $y2 = $entityCoordinates[3];
+                $x1 = $value['coordinates'][0];
+                $y1 = $value['coordinates'][1];
+                $x2 = $value['coordinates'][2];
+                $y2 = $value['coordinates'][3];
                 
                 if ( ($x3 >= $x1 && $x3 <= $x2) || ($x4 >= $x1 && $x4 <= $x2) || ($x3 <= $x1 && $x4 >= $x2) ) {
                     $x_off_limit = true;
@@ -105,11 +103,10 @@ class World {
             if ($coordinates !== false) {
             
                 $this->Items[$entitiesToGen['classes'][$classIndex][$subClassIndex] . '_' . $i] = array(
-                    'left' => $coordinates[0],
-                    'top' => $coordinates[1],
                     'desc' => $entitiesToGen['descriptions'][$classIndex][$subClassIndex],
                     'entity' => $entitiesToGen['classes'][$classIndex][$subClassIndex],
-                    'class' => $entitiesToGen['classTypes'][$classIndex]
+                    'class' => $entitiesToGen['classTypes'][$classIndex],
+                    'coordinates' => $coordinates
                 );
             }
         }

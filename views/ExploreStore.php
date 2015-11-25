@@ -14,9 +14,11 @@ require_once('../Explore.php');
 $Character = unserialize($_SESSION['character']);
 $World = unserialize($_SESSION['world_state']);
 
-if ($_SESSION[$_GET['id']] instanceof Store) {
+if (isset($_SESSION[$_GET['id']])) {
     $ExploreEntity = unserialize($_SESSION[$_GET['id']]);
-} else {
+}
+
+if (!$ExploreEntity instanceof Store) {
     $ExploreEntity = new Store();
 }
 

@@ -35,7 +35,7 @@ if (isset($_SESSION[$_GET['id']])) {
     
     <?php
     foreach ($Dungeon->Items as $id => $itemAttributes) {
-        ?><img class="<?=$itemAttributes['class'];?>" id="<?=$id;?>" data-world="<?=$Dungeon->global_id;?>" src="../images/<?=$itemAttributes['entity'];?>.png" style="top:<?=$itemAttributes['top'];?>; left:<?=$itemAttributes['left'];?>" title="<?=$itemAttributes['desc'];?>" /><?
+        ?><img class="<?=$itemAttributes['class'];?>" id="<?=$id;?>" data-world="<?=$Dungeon->global_id;?>" src="../images/<?=$itemAttributes['entity'];?>.png" style="top:<?=$itemAttributes['coordinates'][1];?>; left:<?=$itemAttributes['coordinates'][0];?>" title="<?=$itemAttributes['desc'];?>" /><?
     }
     ?>
 
