@@ -39,6 +39,8 @@ if (isset($_SESSION[$_GET['id']])) {
     }
     ?>
 
-    <a href="Console.php">Open Inventory</a> | <a href="../actions/resetGame.php">Reset Game</a> | Level: <?=$World->level;?> | Health: <?=$Character->currentHealth . "/" . $Character->maxHealth;?> | Score: <?=$Character->score;?> | Gold: <?=$Character->gold;?>
+    <div id="panel">
+        <a href="Console.php">Open Inventory</a> | <a href="../actions/resetGame.php">Reset Game</a> | Level: <?=$World->level;?> | Health: <?=$Character->currentHealth . "/" . $Character->maxHealth;?> | Score: <?=$Character->score;?> | Gold: <?=$Character->gold;?>
+    </div>
 </body>
 </html>

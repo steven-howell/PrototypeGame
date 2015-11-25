@@ -7,6 +7,7 @@ class World {
     public $level = 1;
     public $type = "Main";
     public $global_id;
+    public $off_limits = array(0 => array(0,0,530,30));
     
     
     public function __construct($type="Main", $id="world_state") {
@@ -14,6 +15,66 @@ class World {
         $this->type = $type;
         $this->global_id = $id;
         $this->generateNewWorld();
+    }
+        
+    public function determineEntityCoordinates($EntityName) {
+        
+        $img_url = "https://dev.skycore.com:8012/platform/test/ProtoTypeGame/images/" . $EntityName . ".png";
+        $size = getimagesize($img_url);
+        
+        $offlimit = true;
+        
+        $i = 0;
+        
+        while ($offlimit || $i >= 5) {
+        
+            $init_l1 = rand(0,1400);
+            $init_t1 = rand(0,800);
+            
+            $init_l2 = $init_l1 + $size[0];
+            $init_t2 = $init_t1 + $size[1];
+            
+            $offlimit = $this->checkOffLimit($init_l1, $init_t1, $init_l2, $init_t2);
+            
+            $i++;
+        }
+        
+        if (!$offlimit) {
+            $this->off_limits[] = array($init_l1, $init_t1, $init_l2, $init_t2);
+            return array($init_l1, $init_t1, $init_l2, $init_t2);
+        }
+        
+        return false;
+    }
+    
+    
+    public function checkOffLimit($x3, $y3, $x4, $y4)
+    {   
+        if (!empty($this->off_limits)) {
+            foreach ($this->off_limits as $entityCoordinates) {
+            
+                $x_off_limit = $y_off_limit = false;
+                
+                $x1 = $entityCoordinates[0];
+                $y1 = $entityCoordinates[1];
+                $x2 = $entityCoordinates[2];
+                $y2 = $entityCoordinates[3];
+                
+                if ( ($x3 >= $x1 && $x3 <= $x2) || ($x4 >= $x1 && $x4 <= $x2) || ($x3 <= $x1 && $x4 >= $x2) ) {
+                    $x_off_limit = true;
+                }
+                
+                if ( ($y3 >= $y1 && $y3 <= $y2) || ($y4 >= $y1 && $y4 <= $y2) || ($y3 <= $y1 && $y4 >= $y2) ) {
+                    $y_off_limit = true;
+                }
+                
+                if ($x_off_limit && $y_off_limit) {
+                    return true;
+                }
+            }
+        }
+        
+        return false;
     }
     
     public function generateNewWorld()
@@ -38,13 +99,19 @@ class World {
                 $this->enemies++;
             }
             
-            $this->Items[$entitiesToGen['classes'][$classIndex][$subClassIndex] . '_' . $i] = array(
-                'left' => rand(0,1400),
-                'top' => rand(0,800),
-                'desc' => $entitiesToGen['descriptions'][$classIndex][$subClassIndex],
-                'entity' => $entitiesToGen['classes'][$classIndex][$subClassIndex],
-                'class' => $entitiesToGen['classTypes'][$classIndex]
-            );
+            // Make sure the new entity doesn't intersect with other entities already on the map
+            $coordinates = $this->determineEntityCoordinates($entitiesToGen['classes'][$classIndex][$subClassIndex]);
+            
+            if ($coordinates !== false) {
+            
+                $this->Items[$entitiesToGen['classes'][$classIndex][$subClassIndex] . '_' . $i] = array(
+                    'left' => $coordinates[0],
+                    'top' => $coordinates[1],
+                    'desc' => $entitiesToGen['descriptions'][$classIndex][$subClassIndex],
+                    'entity' => $entitiesToGen['classes'][$classIndex][$subClassIndex],
+                    'class' => $entitiesToGen['classTypes'][$classIndex]
+                );
+            }
         }
     }
     
@@ -117,9 +184,5 @@ class World {
     }
     
 }
-
-
-
-
 
 ?>
