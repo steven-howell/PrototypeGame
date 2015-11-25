@@ -88,11 +88,9 @@ class Inventory {
             
             $this->currentItems--;
         
-            mail('steve.howell@skycore.com', 'discarditem success ' . $maxIndex, print_r($this->Items[$className], 1));
             return true;
         } else {
             
-            mail('steve.howell@skycore.com', 'discarditem failed', 'asdf');
             return false;
         }
     }

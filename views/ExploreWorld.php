@@ -17,8 +17,8 @@ $World = unserialize($_SESSION['world_state']);
 if (isset($_SESSION[$_GET['id']])) {
     $Dungeon = unserialize($_SESSION[$_GET['id']]);
 } else {
-    $Dungeon = new World("Dungeon");
-    $_SESSION[$_GET['id']] = serialize($Dungeon);
+    $Dungeon = new World("Dungeon", $_GET['id']);
+    $_SESSION[$Dungeon->global_id] = serialize($Dungeon);
 }
 
 ?>
@@ -35,7 +35,7 @@ if (isset($_SESSION[$_GET['id']])) {
     
     <?php
     foreach ($Dungeon->Items as $id => $itemAttributes) {
-        ?><img class="<?=$itemAttributes['class'];?>" id="<?=$id;?>" src="../images/<?=$itemAttributes['entity'];?>.png" style="top:<?=$itemAttributes['top'];?>; left:<?=$itemAttributes['left'];?>" title="<?=$itemAttributes['desc'];?>" /><?
+        ?><img class="<?=$itemAttributes['class'];?>" id="<?=$id;?>" data-world="<?=$Dungeon->global_id;?>" src="../images/<?=$itemAttributes['entity'];?>.png" style="top:<?=$itemAttributes['top'];?>; left:<?=$itemAttributes['left'];?>" title="<?=$itemAttributes['desc'];?>" /><?
     }
     ?>
 
