@@ -74,6 +74,17 @@ abstract class Character {
         } else {
             $this->currentArmor += (int)$value;
         }
+        
+        if ($this->currentArmor <= 0) {
+            $this->removeArmor();
+        }
+    }
+    
+    public function removeArmor() {
+        // Remove current armor from the inventory
+        unset($this->Inventory->Items['ChestPlate']);
+        unset($this->Inventory->Items['ArmorPants']);
+        unset($this->Inventory->Items['Helmet']);
     }
     
     
@@ -125,6 +136,60 @@ class King extends Character {
         
         // Set Inventory
         $this->Inventory = new Inventory($this);
+    }
+}
+
+
+class CitizenWoman extends Character {
+    
+    public function __construct($name, $gold=0) {
+        $this->name = $name;
+        $this->gold = $gold;
+        $this->Weapon = new BowAndArrow();
+        $this->currentHealth = 100;
+        $this->currentArmor = 0;
+        $this->maxHealth = 100;
+        $this->maxArmor = 0;
+        $this->maxInventory = 5;  
+        
+        // Set Inventory
+        $this->Inventory = new Inventory($this);        
+    }
+}
+
+
+class CitizenMan extends Character {
+    
+    public function __construct($name, $gold=0) {
+        $this->name = $name;
+        $this->gold = $gold;
+        $this->Weapon = new BowAndArrow();
+        $this->currentHealth = 100;
+        $this->currentArmor = 0;
+        $this->maxHealth = 100;
+        $this->maxArmor = 0;
+        $this->maxInventory = 5; 
+
+        // Set Inventory
+        $this->Inventory = new Inventory($this);        
+    }
+}
+
+
+class CitizenChild extends Character {
+    
+    public function __construct($name, $gold=0) {
+        $this->name = $name;
+        $this->gold = $gold;
+        $this->Weapon = new BowAndArrow();
+        $this->currentHealth = 100;
+        $this->currentArmor = 0;
+        $this->maxHealth = 100;
+        $this->maxArmor = 0;
+        $this->maxInventory = 5;
+        
+        // Set Inventory
+        $this->Inventory = new Inventory($this);        
     }
 }
 

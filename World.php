@@ -25,10 +25,10 @@ class World {
         
         $i = 0;
         
-        while ($offlimit || $i >= 5) {
+        while ($offlimit && $i < 5) {
         
             $init_l1 = rand(0,1400);
-            $init_t1 = rand(0,800);
+            $init_t1 = rand(40,800);
             
             $init_l2 = $init_l1 + $size[0];
             $init_t2 = $init_t1 + $size[1];
@@ -76,7 +76,9 @@ class World {
     }
     
     public function generateNewWorld()
-    {        
+    {
+        $this->enemies = 0;
+    
         // Depending on the type of world we generate (main, dungeon, cave, etc) we generate world-specific entities and generate them at random
         $func = "generate" . $this->type;
         $entitiesToGen = $this->$func();
@@ -124,7 +126,10 @@ class World {
         $Classes[2] = array('Store', 'Dungeon');
         $Descriptions[2] = array('Store', 'Dungeon');
         
-        $ClassTypes = array('AcquireItem','FightCharacter','Enter');
+        $Classes[3] = array('CitizenMan');
+        $Descriptions[3] = array('Man');
+        
+        $ClassTypes = array('AcquireItem','FightCharacter','Enter','Interact');
 
         return array("classes" => $Classes, "descriptions" => $Descriptions, "classTypes" => $ClassTypes);
     }

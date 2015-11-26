@@ -79,12 +79,31 @@ function callAction(elem) {
             $("#"+elementId).remove();
         } else if (returnData.action == 'goto_url') {
             window.location.href = returnData.url;
+        } else if (returnData.action == 'interact') {
+          
+            // Add the message to the message console and show it
+            $("#messages").html(returnData.message);
+            
+            showMessageConsole();
         }
         
         if (returnData.outcome == "success") {
             $("#"+elementId).remove();
         }
     });      
+}
+
+
+function showMessageConsole()
+{        
+    // Show the message console
+    $("#messages").show();
+    
+    // Fade out the messaging console after 5 seconds delay
+    setTimeout(function() {
+        $('#messages').fadeOut(600);
+        $('#messages').html('');
+    }, 5000);
 }
 
 

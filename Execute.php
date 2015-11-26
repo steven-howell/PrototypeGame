@@ -28,7 +28,6 @@ if (isset($_SESSION['world_state'])) {
     
     $_SESSION['world_state'] = serialize($World);
 }
-
 ?>
 <html>
 <head>
@@ -43,12 +42,15 @@ if (isset($_SESSION['world_state'])) {
     
     <?php
     foreach ($World->Items as $id => $itemAttributes) {
-        ?><img class="<?=$itemAttributes['class'];?>" id="<?=$id;?>" data-world="<?=$World->global_id;?>" src="images/<?=$itemAttributes['entity'];?>.png" style="top:<?=$itemAttributes['coordinates'][1];?>; left:<?=$itemAttributes['coordinates'][0];?>" title="<?=$itemAttributes['desc'];?>" /><?
+        ?><img class="<?=$itemAttributes['class'];?>" id="<?=$id;?>" data-world="<?=$World->global_id;?>" src="images/<?=$itemAttributes['entity'];?>.png" style="top:<?=$itemAttributes['coordinates'][1];?>; left:<?=$itemAttributes['coordinates'][0];?>;" title="<?=$itemAttributes['desc'];?>" /><?
     }
     ?>
 
     <div id="panel">
-        <a href="views/Console.php">Open Inventory</a> | <a href="actions/resetGame.php">Reset Game</a> | Level: <?=$World->level;?> | Health: <?=$Character->currentHealth . "/" . $Character->maxHealth;?> | Score: <?=$Character->score;?> | Gold: <?=$Character->gold;?>
+        <a href="views/Console.php">Open Inventory</a> | <a href="actions/resetGame.php">Reset Game</a> | Level: <?=$World->level;?> | Health: <?=$Character->currentHealth . "/" . $Character->maxHealth;?> | Armor: <?=$Character->currentArmor . "/" . $Character->maxArmor;?> | Score: <?=$Character->score;?> | Gold: <?=$Character->gold;?>
     </div>
+    
+    <div id="messages"></div>
+    
 </body>
 </html>
