@@ -115,8 +115,8 @@ class World {
     
     private function generateMain()
     {
-        $Classes[0] = array('HealthPotion', 'Poison', 'Helmet', 'ChestPlate');
-        $Descriptions[0] = array('Health Potion', 'Poison', 'Helmet', 'Chest Plate');
+        $Classes[0] = array('HealthPotion', 'Poison', 'Helmet', 'ChestPlate', 'ArmorPants');
+        $Descriptions[0] = array('Health Potion', 'Poison', 'Helmet', 'Chest Plate', 'Armored Pants');
         
         $Classes[1] = array('Troll');
         $Descriptions[1] = array('Troll');
@@ -132,8 +132,8 @@ class World {
     
     private function generateDungeon() 
     {
-        $Classes[0] = array('HealthPotion', 'Poison', 'Helmet', 'ChestPlate');
-        $Descriptions[0] = array('Health Potion', 'Poison', 'Helmet', 'Chest Plate');
+        $Classes[0] = array('HealthPotion', 'Poison', 'Helmet', 'ChestPlate', 'ArmorPants');
+        $Descriptions[0] = array('Health Potion', 'Poison', 'Helmet', 'Chest Plate', 'Armored Pants');
         
         $Classes[1] = array('Skeleton');
         $Descriptions[1] = array('Skeleton'); 
@@ -143,18 +143,12 @@ class World {
         return array("classes" => $Classes, "descriptions" => $Descriptions, "classTypes" => $ClassTypes);
     }
     
-        
+    
     private function generateCave()
     {
         
     }
     
-    
-    private function generateStore()
-    {
-        
-    }
-        
     
     public function removeItem($id)
     {
