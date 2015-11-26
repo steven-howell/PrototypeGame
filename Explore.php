@@ -82,22 +82,4 @@ class Store implements iExplore {
     }  
 }
 
-
-
-class Dungeon implements iExplore {
-    
-    
-    public function renderExplorable($id) {
-        
-        ob_start();
-        
-        ?>
-        YOU ARE IN A DUNGEON!
-        <?
-        
-        return ob_get_clean();
-    }
-    
-}
-
 ?>
