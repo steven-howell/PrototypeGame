@@ -31,7 +31,7 @@ if (isset($_SESSION[$_GET['id']])) {
 </head>
 <body style="background-color:black; color:red;">
 
-    <div id="character"><img src="../images/<?=get_class($Character);?>.png" /></div>
+    <div id="character"><img id="character_img" src="../images/<?=get_class($Character);?>.png" /></div>
     
     <?php
     foreach ($Dungeon->Items as $id => $itemAttributes) {

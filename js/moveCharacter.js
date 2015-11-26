@@ -21,15 +21,19 @@ $(document).keydown(function(e) {
     switch (e.which) {
     case 37:
         $('#character').css('left', $('#character').offset().left - 10);
+        $('#character_img').attr("src", 'https://dev.skycore.com:8012/platform/test/ProtoTypeGame/images/King-Left.png');
         break;
     case 38:
         $('#character').css('top', $('#character').offset().top - 10);
+        $('#character_img').attr("src", 'https://dev.skycore.com:8012/platform/test/ProtoTypeGame/images/King-Rear.png');
         break;
     case 39:
         $('#character').css('left', $('#character').offset().left + 10);
+        $('#character_img').attr("src", 'https://dev.skycore.com:8012/platform/test/ProtoTypeGame/images/King-Right.png');
         break;
     case 40:
         $('#character').css('top', $('#character').offset().top + 10);
+        $('#character_img').attr("src", 'https://dev.skycore.com:8012/platform/test/ProtoTypeGame/images/King.png');
         break;
     }
     

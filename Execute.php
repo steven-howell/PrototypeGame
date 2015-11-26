@@ -39,7 +39,7 @@ if (isset($_SESSION['world_state'])) {
 
 <body>
 
-    <div id="character"><img src="images/<?=get_class($Character);?>.png" /></div>
+    <div id="character"><img id="character_img" src="images/<?=get_class($Character);?>.png" /></div>
     
     <?php
     foreach ($World->Items as $id => $itemAttributes) {
