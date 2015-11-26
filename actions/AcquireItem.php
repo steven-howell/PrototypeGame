@@ -23,9 +23,11 @@ $data = explode("_", $_GET['id']);
 $class = $data[0];
 
 
-$Character->Inventory->AddItem(new $class());
+if ($Character->Inventory->AddItem(new $class())) {
 
-$World->removeItem($_GET['id']);
+    $World->removeItem($_GET['id']);
+
+}
 
 $_SESSION['character'] = serialize($Character);
 $_SESSION[$world_id] = serialize($World);
