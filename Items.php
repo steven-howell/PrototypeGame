@@ -1,23 +1,29 @@
 <?php
 
 
-interface iItem {
+abstract class Item {
+    
+    public $frequency;
+    public $buy;
+    public $sell;
+    public $description;
+    public $addToInventory = true;
+    public $MaxInventoryItem = 1;
 
-    public function AddItAction($Character);
-    public function UseItAction($Character);
-    public function RemoveItAction($Character);
-
+    abstract public function AddItAction($Character);
+    abstract public function UseItAction($Character);
+    abstract public function RemoveItAction($Character);
 }
 
 
-class Heart implements iItem {
+class Heart extends Item {
     
     public function __construct() {
+        $this->frequency = 60;
         $this->buy = 10;
         $this->sell = 5;
         $this->description = "Heart";
-        $this->addtoInventory = false;
-        $this->maxInventoryItem = 0;
+        $this->addToInventory = false;
     }
     
     public function AddItAction($Character) {
@@ -25,8 +31,6 @@ class Heart implements iItem {
     }
     
     public function UseItAction($Character) {
-        
-        echo "Heart used on " . $Character->name . "\r\n";
         $Character->setHealth(10);
     }
     
@@ -36,13 +40,13 @@ class Heart implements iItem {
 }
 
 
-class HealthPotion implements iItem {
+class HealthPotion extends Item {
     
     public function __construct() {
+        $this->frequency = 70;
         $this->buy = 40;
         $this->sell = 20;
         $this->description = "Health Potion";
-        $this->addToInventory = true;
         $this->MaxInventoryItem = 3;
     }
     
@@ -52,7 +56,6 @@ class HealthPotion implements iItem {
     
     public function UseItAction($Character)
     {
-        echo "Health potion used on " . $Character->name . "\r\n";
         $Character->setHealth(100);
     }
     
@@ -62,13 +65,13 @@ class HealthPotion implements iItem {
 }
 
 
-class Poison implements iItem {
+class Poison extends Item {
     
     public function __construct() {
+        $this->frequency = 80;
         $this->buy = 30;
         $this->sell = 15;
         $this->description = "Poison";
-        $this->addToInventory = true;
         $this->MaxInventoryItem = 3;
     }
     
@@ -79,7 +82,6 @@ class Poison implements iItem {
     public function UseItAction($Character)
     {
         // Poison the target character
-        echo "Poison used on " . $Character->name . "\r\n";
         $Character->setHealth(-20);
     }
     
@@ -90,14 +92,13 @@ class Poison implements iItem {
 }
 
 
-class HolyHandGrenade implements iItem {
+class HolyHandGrenade extends Item {
  
     public function __construct() {
+        $this->frequency = 20;
         $this->buy = 150;
         $this->sell = 75;
         $this->description = "Holy Hand Grenade";
-        $this->addToInventory = true;
-        $this->MaxInventoryItem = 1;
     }
     
     public function AddItAction($Character) {
@@ -107,7 +108,6 @@ class HolyHandGrenade implements iItem {
     public function UseItAction($Character)
     {
         // Poison the target character
-        echo "Holy Hand Grenade used on " . $Character->name . "\r\n";
         $Character->setDamage(-50);
     }
     
@@ -117,14 +117,13 @@ class HolyHandGrenade implements iItem {
 }
 
 
-class Helmet implements iItem {
+class Helmet extends Item {
     
     public function __construct() {
+        $this->frequency = 50;
         $this->buy = 200;
         $this->sell = 100;
         $this->description = "Helmet";
-        $this->addToInventory = true;
-        $this->MaxInventoryItem = 1;
     }
     
     public function AddItAction($Character)
@@ -144,14 +143,13 @@ class Helmet implements iItem {
 }
 
 
-class ChestPlate implements iItem {
+class ChestPlate extends Item {
     
     public function __construct() {
+        $this->frequency = 50;
         $this->buy = 250;
         $this->sell = 125;
         $this->description = "Chest Plate";
-        $this->addToInventory = true;
-        $this->MaxInventoryItem = 1;
     }
     
     
@@ -172,14 +170,13 @@ class ChestPlate implements iItem {
 }
 
 
-class ArmorPants implements iItem {
+class ArmorPants extends Item {
     
     public function __construct() {
+        $this->frequency = 50;
         $this->buy = 250;
         $this->sell = 125;
         $this->description = "Armored Pants";
-        $this->addToInventory = true;
-        $this->MaxInventoryItem = 1;
     }
     
     public function AddItAction($Character)
