@@ -102,7 +102,6 @@ function showMessageConsole()
     // Fade out the messaging console after 5 seconds delay
     setTimeout(function() {
         $('#messages').fadeOut(600);
-        $('#messages').html('');
     }, 5000);
 }
 
