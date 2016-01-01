@@ -19,24 +19,29 @@ abstract class Item {
 class Heart extends Item {
     
     public function __construct() {
-        $this->frequency = 60;
+        $this->frequency = 10;
         $this->buy = 10;
         $this->sell = 5;
         $this->description = "Heart";
         $this->addToInventory = false;
     }
     
-    public function AddItAction($Character) {
+    
+    public function AddItAction($Character)
+    {
         // Item cannot be added/removed from inventory
     }
     
-    public function UseItAction($Character) {
+    public function UseItAction($Character)
+    {
         $Character->setHealth(10);
     }
     
-    public function RemoveItAction($Character) {
+    public function RemoveItAction($Character)
+    {
         // Item cannot be added/removed from inventory
-    }
+    }    
+    
 }
 
 
@@ -193,6 +198,37 @@ class ArmorPants extends Item {
     {
         $Character->setArmor(-2);
     }
+}
+
+
+class Gold extends Item {
+    
+    public function __construct() {
+        $this->frequency = 10;
+        $this->buy = 0;
+        $this->sell = 0;
+        $this->description = "Gold";
+        $this->addToInventory = false;
+    }
+    
+    
+    public function AddItAction($Character)
+    {
+        // Gold cannot be added/removed from inventory.
+    }
+    
+    
+    public function UseItAction($Character)
+    {
+        $goldAmount = rand(1,10);
+        $Character->setGold($goldAmount);
+    }
+    
+    public function RemoveItAction($Character)
+    {
+        // No Remove action. Gold cannot be added/removed from inventory.
+    }    
+    
 }
 
 ?>

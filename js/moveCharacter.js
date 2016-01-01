@@ -70,13 +70,18 @@ function callAction(elem) {
     var elementWorld = $(elem).attr('data-world');
     
     var scriptCall = "https://dev.skycore.com:8012/platform/test/ProtoTypeGame/actions/" + elementClass + ".php?id=" + elementId + "&world_id=" + elementWorld;
-    
+
     $.get(scriptCall, function(data) {
         
         var returnData = jQuery.parseJSON(data);
         
         if (returnData.action == 'obtain_item') {
+
+            $("#consoleCurrentHealth").html(returnData.health);
+            $("#consoleCurrentArmor").html(returnData.armor);
+            $("#consoleGold").html(returnData.gold);
             $("#"+elementId).remove();
+            
         } else if (returnData.action == 'goto_url') {
             window.location.href = returnData.url;
         } else if (returnData.action == 'interact') {
@@ -85,10 +90,6 @@ function callAction(elem) {
             $("#messages").html(returnData.message);
             
             showMessageConsole();
-        }
-        
-        if (returnData.outcome == "success") {
-            $("#"+elementId).remove();
         }
     });      
 }

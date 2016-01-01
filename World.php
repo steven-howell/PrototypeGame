@@ -117,8 +117,8 @@ class World {
     
     private function generateMain()
     {
-        $Classes[0] = array('HealthPotion', 'Poison', 'Helmet', 'ChestPlate', 'ArmorPants');
-        $Descriptions[0] = array('Health Potion', 'Poison', 'Helmet', 'Chest Plate', 'Armored Pants');
+        $Classes[0] = array('HealthPotion', 'Poison', 'Helmet', 'ChestPlate', 'ArmorPants', 'Gold', 'Heart');
+        $Descriptions[0] = array('Health Potion', 'Poison', 'Helmet', 'Chest Plate', 'Armored Pants', 'Gold', 'Heart');
         
         $Classes[1] = array('Troll');
         $Descriptions[1] = array('Troll');
@@ -129,7 +129,10 @@ class World {
         $Classes[3] = array('CitizenMan');
         $Descriptions[3] = array('Man');
         
-        $ClassTypes = array('AcquireItem','FightCharacter','Enter','Interact');
+        $Classes[4] = array('Bush');
+        $Descriptions[4] = array('Bush');
+        
+        $ClassTypes = array('AcquireItem','FightCharacter','Enter','Interact','Obstacle');
 
         return array("classes" => $Classes, "descriptions" => $Descriptions, "classTypes" => $ClassTypes);
     }
@@ -137,8 +140,8 @@ class World {
     
     private function generateDungeon() 
     {
-        $Classes[0] = array('HealthPotion', 'Poison', 'Helmet', 'ChestPlate', 'ArmorPants');
-        $Descriptions[0] = array('Health Potion', 'Poison', 'Helmet', 'Chest Plate', 'Armored Pants');
+        $Classes[0] = array('HealthPotion', 'Poison', 'Helmet', 'ChestPlate', 'ArmorPants', 'Heart');
+        $Descriptions[0] = array('Health Potion', 'Poison', 'Helmet', 'Chest Plate', 'Armored Pants', 'Heart');
         
         $Classes[1] = array('Skeleton');
         $Descriptions[1] = array('Skeleton'); 

@@ -52,16 +52,11 @@ abstract class Character {
         
         if ( ($this->currentHealth + (int)$value) > $this->maxHealth) {
             $this->currentHealth = $this->maxHealth;
-            echo $this->name . " has " . $this->currentHealth . " health!\r\n";
         } else if ( ($this->currentHealth + (int)$value) < 0) {
             $this->currentHealth = 0;
-
             $this->dead = true;
-            echo $this->name . " has been defeated!\r\n";
-            
         } else {            
             $this->currentHealth += (int)$value;
-            echo $this->name . " has " . $this->currentHealth . " health!\r\n";
         }
     }
     
@@ -75,6 +70,7 @@ abstract class Character {
             $this->currentArmor += (int)$value;
         }
         
+        // If armor is set to zero, automatically dispose of any armor in the inventory
         if ($this->currentArmor <= 0) {
             $this->removeArmor();
         }

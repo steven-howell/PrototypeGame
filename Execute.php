@@ -47,7 +47,7 @@ if (isset($_SESSION['world_state'])) {
     ?>
 
     <div id="panel">
-        <a href="views/Console.php">Open Inventory</a> | <a href="actions/resetGame.php">Reset Game</a> | Level: <?=$World->level;?> | Health: <?=$Character->currentHealth . "/" . $Character->maxHealth;?> | Armor: <?=$Character->currentArmor . "/" . $Character->maxArmor;?> | Score: <?=$Character->score;?> | Gold: <?=$Character->gold;?>
+        <a href="views/Console.php">Open Inventory</a> | <a href="actions/resetGame.php">Reset Game</a> | Level: <?=$World->level;?> | Health: <span id="consoleCurrentHealth"><?=$Character->currentHealth;?></span> / <?=$Character->maxHealth;?> | Armor: <span id="consoleCurrentArmor"><?=$Character->currentArmor;?></span> / <?=$Character->maxArmor;?> | Score: <?=$Character->score;?> | Gold: <span id="consoleGold"><?=$Character->gold;?></span>
     </div>
     
     <div id="messages"></div>

@@ -40,7 +40,7 @@ if (isset($_SESSION[$_GET['id']])) {
     ?>
 
     <div id="panel">
-        <a href="Console.php">Open Inventory</a> | <a href="../actions/resetGame.php">Reset Game</a> | Level: <?=$World->level;?> | Health: <?=$Character->currentHealth . "/" . $Character->maxHealth;?> | Score: <?=$Character->score;?> | Gold: <?=$Character->gold;?>
+        <a href="Console.php">Open Inventory</a> | <a href="../actions/resetGame.php">Reset Game</a> | Level: <?=$World->level;?> | Health: <span id="consoleCurrentHealth"><?=$Character->currentHealth;?></span> / <?=$Character->maxHealth;?> | Armor: <span id="consoleCurrentArmor"><?=$Character->currentArmor;?></span> / <?=$Character->maxArmor;?> | Score: <?=$Character->score;?> | Gold: <span id="consoleGold"><?=$Character->gold;?></span>
     </div>
 </body>
 </html>

@@ -34,7 +34,8 @@ class Inventory {
         } else {
             echo "Cannot use " . $className . "! It is not in your inventory!\r\n";
         }
-    }    
+    } 
+    
     
     public function AddItem($Item) {
         
@@ -42,28 +43,32 @@ class Inventory {
         
         $itemCount = $this->getItemCountByType($className);
         
-        if ($Item->addToInventory && $this->currentItems < $this->maxInventory) {
-        
-            // If this is a character's inventory, check to make sure max of a specific item isn't exceeded
+        // If item can only be used on-the-spot and not added to the inventory
+        if (!$Item->addToInventory) {
+           
+            // If the character object is set, then use the item
             if (is_object($this->Character)) {
-                
-                if ($itemCount < $Item->MaxInventoryItem) {
-                    $this->Items[$className][] = $Item; 
-                    $Item->AddItAction($this->Character);
-                } else {
-                    return false;
-                }
-            // If this is a store's inventory, then MaxInventoryItem does not apply. Add the item.
-            } else {
-                $this->Items[$className][] = $Item;
+                $Item->UseItAction($this->Character);
+                return true;
             }
+            
+        // If item can be added to inventory and inventory size is less than maximum, add item and execute Add action
+        } else {
+
+            if ($this->currentItems < $this->maxInventory && $itemCount < $Item->MaxInventoryItem) {
+                $this->Items[$className][] = $Item;
+    
+                if (is_object($this->Character)) {
+                    $Item->AddItAction($this->Character);
+                }
+                
+                $this->currentItems++;
+                
+                return true;
+            }
+        }
         
-            $this->currentItems++;
-          
-            return true;
-        } else {            
-            return false;
-        }        
+        return false;       
     }
     
     public function DiscardItem($Item) {

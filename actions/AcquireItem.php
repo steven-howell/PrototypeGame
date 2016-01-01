@@ -32,6 +32,6 @@ if ($Character->Inventory->AddItem(new $class())) {
 $_SESSION['character'] = serialize($Character);
 $_SESSION[$world_id] = serialize($World);
 
-echo json_encode(array('action' => 'obtain_item'));
+echo json_encode(array('action' => 'obtain_item', 'health' => $Character->currentHealth, 'armor' => $Character->currentArmor, 'gold' => $Character->gold));
 
 ?>
